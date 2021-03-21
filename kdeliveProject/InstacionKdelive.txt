@@ -1,0 +1,24 @@
+https://ubunlog.com/kdenlive-excelente-editor-de-video-no-lineal-para-ubuntu-y-derivados/
+
+
+
+Instalación desde AppImage
+
+Finalmente, si no te gusta añadir nada a tu sistema o quieres realizar una prueba de la aplicación, pudes optar por este tipo de “instalación” en el cual solo debes descargar el archivo AppImage de la aplicación.
+
+Con lo cual evitaras instalar archivos y paquetes adicionales a tu sistema, solo debes descargar el archivo AppImage con el siguiente comando:
+1
+	
+wget https://files.kde.org/kdenlive/release/kdenlive-18.08.3-x86_64.AppImage
+
+Dar permisos de ejecución al archivo con:
+1
+	
+sudo chmod +x kdenlive-18.08.3-x86_64.AppImage
+
+Y puedes ejecutar la aplicación cada vez que lo requieras desde este archivo descargado dando doble clic sobre él o desde la terminal con el comando:
+1
+	
+./kdenlive-18.08.3-x86_64.AppImage
+
+Y listo.
