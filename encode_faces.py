@@ -28,7 +28,7 @@ knownNames = []
 for (i, imagePath) in enumerate(imagePaths):
 	# extract the person name from the image path
 	print("[INFO] processing image {}/{} - {}".format(i + 1,
-		len(imagePaths)),imagePaths)
+		len(imagePaths),imagePaths))
 	name = imagePath.split(os.path.sep)[-2]
 	# load the input image and convert it from BGR (OpenCV ordering)
 	# to dlib ordering (RGB)
