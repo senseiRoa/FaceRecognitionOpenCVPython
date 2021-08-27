@@ -1,0 +1,39 @@
+------------------------------------DESCARGA DE IMAGENES POR CADA ACTOR----------------------------------------------------------------------
+ python python_search_bing_api.py -q "John Travolta" -o dataset/JohnTravolta
+ python python_search_bing_api.py -q "Glynnis O'Connor" -o dataset/GlynnisOConnor
+ python python_search_bing_api.py -q "Robert Reed " -o dataset/RobertReed
+ python python_search_bing_api.py -q "Diana Hyland " -o dataset/DianaHyland
+ python python_search_bing_api.py -q "Ralph Bellamy" -o dataset/RalphBellamy
+ python python_search_bing_api.py -q "P.J. Soles" -o dataset/PJSoles
+ python python_search_bing_api.py -q "Kelly Ward The Boy In The Plastic Bubble" -o dataset/KellyWard
+ python python_search_bing_api.py -q "John Travolta in The Boy In The Plastic Bubble" -o dataset/KellyWard
+
+
+
+python python_search_bing_api.py -q "will smith" -o dataset/will_Smith
+
+
+--------------------------------ANALISIS DE VECTOR DE CARACTERISTICAS--------------------------------------------------------------------------
+python encode_faces.py --dataset dataset --encodings encodings.pickle
+
+--------------------------------VERIFICACION DEL ENTRENAMIENTO--------------------------------------------------------------------------
+python recognize_faces_image.py --encodings encodings.pickle --image  examples/00000001.jpg -d hog
+python recognize_faces_image.py --encodings encodings.pickle --image  examples/00000002.jpg -d hog
+python recognize_faces_image.py --encodings encodings.pickle --image  examples/00000003.jpg -d hog
+python recognize_faces_image.py --encodings encodings.pickle --image  examples/00000004.jpg -d hog
+python recognize_faces_image.py --encodings encodings.pickle --image  examples/000000015.jpg -d hog
+
+
+python recognize_faces_image.py --encodings encodings.pickle --image  examples/TEST4.jpg -d hog
+
+---------------------------------ANALISIS DE VECTOR PARA VIDEO-------------------------------------------------------------------------
+
+python recognize_faces_video.py --encodings encodings.pickle --output output/webcam_face_recognition_output.avi --display 1
+python recognize_faces_video_file.py --encodings encodings.pickle --input videos/The_Boy_In_The_Plastic_Bubble.mp4 --output output/lunch_scene_output.avi	--display 0
+
+
+
+
+!python FaceRecognitionOpenCVPython/recognize_faces_image.py --encodings FaceRecognitionOpenCVPython/encodings.pickle --image  FaceRecognitionOpenCVPython/examples/00000004.jpg 
+!python FaceRecognitionOpenCVPython/encode_faces.py --dataset FaceRecognitionOpenCVPython/dataset --encodings FaceRecognitionOpenCVPython/encodings.pickle
+%run FaceRecognitionOpenCVPython/test.py --encodings FaceRecognitionOpenCVPython/encodings.pickle --input FaceRecognitionOpenCVPython/videos/part1.mp4 --output FaceRecognitionOpenCVPython/videos/part1FR.mp4	--display 0
