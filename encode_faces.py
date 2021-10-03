@@ -57,3 +57,4 @@ data = {"encodings": knownEncodings, "names": knownNames}
 f = open(args["encodings"], "wb")
 f.write(pickle.dumps(data))
 f.close()
+#print(data)
