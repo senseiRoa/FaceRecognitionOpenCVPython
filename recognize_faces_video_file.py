@@ -24,6 +24,7 @@ args = vars(ap.parse_args())
 
 # load known faces and embeddings
 print("[INFO] loading encodings...")
+tic = time.clock()
 data = pickle.loads(open(args["encodings"], "rb").read())
 
 # initialize pointer to vid file and vid writer
@@ -119,3 +120,7 @@ print("saliendo..")
 # check if the vid writer point needs to be released
 if writer is not None:
 	writer.release()
+
+toc = time.clock()
+eje=(toc - tic)
+print("tiempo de ejecuciòn->" +str(eje) );

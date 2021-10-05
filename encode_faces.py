@@ -5,6 +5,7 @@ import argparse
 import pickle
 import cv2
 import os
+import time
 
 # construct the argument parser and parse the arguments
 ap = argparse.ArgumentParser()
@@ -18,6 +19,7 @@ args = vars(ap.parse_args())
 
 # grab the paths to the input images in our dataset
 print("[INFO] quantifying faces...")
+tic = time.clock()
 imagePaths = list(paths.list_images(args["dataset"]))
 # initialize the list of known encodings and known names
 knownEncodings = []
@@ -58,3 +60,6 @@ f = open(args["encodings"], "wb")
 f.write(pickle.dumps(data))
 f.close()
 #print(data)
+toc = time.clock()
+eje=(toc - tic)
+print("tiempo de ejecuciòn->" +str(eje) );
