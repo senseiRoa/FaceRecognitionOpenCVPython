@@ -71,10 +71,13 @@ print("[INFO] loop over the recognized faces...")
     # loop over the recognized faces
 for ((top, right, bottom, left), name) in zip(boxes, names):
 	# draw the predicted face name on the image
-	cv2.rectangle(image, (left, top), (right, bottom), (0, 255, 0), 2)
+	colorRectangle=(0, 255, 0)		
+	if name == "Unknown":
+		colorRectangle=(0, 0, 255)	
+	cv2.rectangle(image, (left, top), (right, bottom),colorRectangle, 2)
 	y = top - 15 if top - 15 > 15 else top + 15
 	cv2.putText(image, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,
-		0.75, (0, 255, 0), 2)
+		0.75,colorRectangle, 2)
 print("[INFO] show the output image...")    
 # show the output image
 cv2_imshow(image)

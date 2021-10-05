@@ -80,11 +80,14 @@ while True:
 		left = int(left * r)
 
 		# draw predicted face name on img
+		colorRectangle=(0, 255, 0)
+		if name == "Unknown":
+			colorRectangle=(0, 0, 255)
 		cv2.rectangle(frame, (left, top), (right, bottom),
-			(0, 255, 0), 2)
+			colorRectangle, 2)
 		y = top - 15 if top - 15 > 15 else top + 15
 		cv2.putText(frame, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,
-			0.75, (0, 255, 0), 2)
+			0.75, colorRectangle, 2)
 
 	# if video writer is None && writing output vid to disk init writer	if writer is None and args["output"] is not None:
 		fourcc = cv2.VideoWriter_fourcc(*"MJPG")
