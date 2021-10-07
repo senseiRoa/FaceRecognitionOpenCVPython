@@ -40,6 +40,20 @@ for file in glob.glob("*.mp4"):
     stream = cv2.VideoCapture(os.path.join(pathv, file))
     writer = None
 
+    stream= cv2.VideoCapture('princess.mp4')
+    
+    # determinar el número de frames de la secuencia de vídeo									
+    try:                                                 
+        prop = cv2.cv.CV_CAP_PROP_FRAME_COUNT if imutils.is_cv2() \
+            else cv2.CAP_PROP_FRAME_COUNT
+        totalframecount = int(stream.get(prop))
+        print("[INFO] {} total frames in video".format(totalframecount))
+    except:                                               
+        print("[INFO] could not determine # of frames in video")
+        print("[INFO] no approx. completion time can be provided")
+        totalframecount = -1
+
+
     # loop over frames from vid file stream
     while True:
         # grab next frame
