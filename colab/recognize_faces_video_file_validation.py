@@ -32,11 +32,11 @@ for file in glob.glob("*.mp4"):
     
     # load known faces and embeddings
     print("[INFO] loading encodings...")
-    data = pickle.loads(open(os.path.join(pathv, file), "rb").read())
+    data = pickle.loads(open(args["encodings"], "rb").read())
 
     # initialize pointer to vid file and vid writer
     print("[INFO] processing video...")
-    stream = cv2.VideoCapture(args["input"])
+    stream = cv2.VideoCapture(os.path.join(pathv, file))
     writer = None
 
     # loop over frames from vid file stream
