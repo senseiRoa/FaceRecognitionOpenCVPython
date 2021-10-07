@@ -32,15 +32,15 @@ frameIndex = 0
 
 pathv=args["dataset"]
 os.chdir(pathv)
-for file in glob.glob("*.mp4"):
+for file in sorted(glob.glob("*.mp4")):
     
 
     # initialize pointer to vid file and vid writer
-    print("[INFO] processing video ["+file +"] ...")
+    print("[INFO]---------------------------- processing video ["+file +"] ...-------------------------------")
     stream = cv2.VideoCapture(os.path.join(pathv, file))
     writer = None
-
-    stream= cv2.VideoCapture('princess.mp4')
+    frameIndex=0
+    
     
     # determinar el número de frames de la secuencia de vídeo									
     try:                                                 
@@ -61,6 +61,7 @@ for file in glob.glob("*.mp4"):
 
         # if frame was not grabbed, then we have reached the end of stream
         if not grabbed:
+            print("Not grabbed")
             break
 
         # convert input frame from BGR to RGB then resize it to width of 750px
@@ -120,11 +121,11 @@ for file in glob.glob("*.mp4"):
 
         # if vid writer is None && writing output vid to disk, init writer    
         if writer is None and args["output"] is not None:  
-            pring('save file '+file+ " to Disk...")      
+            print('save file '+file+ " to Disk...")                  
             fourcc = cv2.VideoWriter_fourcc(*"XVID")
             writer = cv2.VideoWriter(os.path.join(args["output"], file), fourcc, 35,
                 (frame.shape[1], frame.shape[0]), True)
-            frameIndex=0
+            
 
         # if writer is not None, write frame with recognized faces 
         if writer is not None:

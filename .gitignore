@@ -1,1 +1,5 @@
+output/*.zip
+output/*.zip
 output/*.mp4
+output/*/*
+
