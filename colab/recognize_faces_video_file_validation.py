@@ -25,17 +25,18 @@ ap.add_argument("-d", "--detection-method", type=str, default="cnn",
     help="face detection model to use: either `hog` or `cnn`")
 args = vars(ap.parse_args())
 
+# load known faces and embeddings
+print("[INFO] loading encodings...")
+data = pickle.loads(open(args["encodings"], "rb").read())
 frameIndex = 0 
+
 pathv=args["dataset"]
 os.chdir(pathv)
 for file in glob.glob("*.mp4"):
     
-    # load known faces and embeddings
-    print("[INFO] loading encodings...")
-    data = pickle.loads(open(args["encodings"], "rb").read())
 
     # initialize pointer to vid file and vid writer
-    print("[INFO] processing video...")
+    print("[INFO] processing video ["+file +"] ...")
     stream = cv2.VideoCapture(os.path.join(pathv, file))
     writer = None
 
@@ -104,10 +105,12 @@ for file in glob.glob("*.mp4"):
                 0.75, colorRectangle, 2)
 
         # if vid writer is None && writing output vid to disk, init writer    
-        if writer is None and args["output"] is not None:        
+        if writer is None and args["output"] is not None:  
+            pring('save file '+file+ " to Disk...")      
             fourcc = cv2.VideoWriter_fourcc(*"XVID")
             writer = cv2.VideoWriter(os.path.join(args["output"], file), fourcc, 35,
                 (frame.shape[1], frame.shape[0]), True)
+            frameIndex=0
 
         # if writer is not None, write frame with recognized faces 
         if writer is not None:

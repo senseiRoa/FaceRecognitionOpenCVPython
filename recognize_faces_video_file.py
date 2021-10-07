@@ -98,6 +98,7 @@ while True:
 
 	# if vid writer is None && writing output vid to disk, init writer	
 	if writer is None and args["output"] is not None:
+		pring('save file '+file+ " to Disk...")      
 		fourcc = cv2.VideoWriter_fourcc(*"MJPG")
 		writer = cv2.VideoWriter(args["output"], fourcc, 24,
 			(frame.shape[1], frame.shape[0]), True)
