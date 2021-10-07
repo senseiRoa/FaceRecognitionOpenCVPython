@@ -89,7 +89,8 @@ while True:
 		cv2.putText(frame, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,
 			0.75, colorRectangle, 2)
 
-	# if video writer is None && writing output vid to disk init writer	if writer is None and args["output"] is not None:
+	# if video writer is None && writing output vid to disk init writer	
+	if writer is None and args["output"] is not None:
 		fourcc = cv2.VideoWriter_fourcc(*"MJPG")
 		writer = cv2.VideoWriter(args["output"], fourcc, 20,
 			(frame.shape[1], frame.shape[0]), True)

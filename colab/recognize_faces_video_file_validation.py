@@ -103,10 +103,10 @@ for file in glob.glob("*.mp4"):
             cv2.putText(frame, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX,
                 0.75, colorRectangle, 2)
 
-        # if vid writer is None && writing output vid to disk, init writer    if writer is None and args["output"] is not None:
-        
-            fourcc = cv2.VideoWriter_fourcc(*"MJPG")
-            writer = cv2.VideoWriter(os.path.join(args["output"], file), fourcc, 24,
+        # if vid writer is None && writing output vid to disk, init writer    
+        if writer is None and args["output"] is not None:        
+            fourcc = cv2.VideoWriter_fourcc(*"XVID")
+            writer = cv2.VideoWriter(os.path.join(args["output"], file), fourcc, 35,
                 (frame.shape[1], frame.shape[0]), True)
 
         # if writer is not None, write frame with recognized faces 
@@ -114,11 +114,11 @@ for file in glob.glob("*.mp4"):
             writer.write(frame)
             frameIndex+=1
             
-        if frameIndex>1 and frameIndex % 100==0:
+        if frameIndex>1 and frameIndex % 200==0:
             print("Frame #"+str(frameIndex))
             
         # check if displaying output frame to screen
-        if args["display"] > 0:
+        if args["display"] > 0 and frameIndex>1 and frameIndex % 200==0:
             cv2_imshow(frame)
             key = cv2.waitKey(1) & 0xFF
 
@@ -128,7 +128,8 @@ for file in glob.glob("*.mp4"):
 
     # close vid file pointers
     stream.release()
-    print("saliendo..")
     # check if the vid writer point needs to be released
     if writer is not None:
         writer.release()
+
+print("saliendo..")
