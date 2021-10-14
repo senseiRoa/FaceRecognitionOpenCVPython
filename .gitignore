@@ -1,5 +1,4 @@
-output/*.zip
-output/*.zip
-output/*.mp4
-output/*/*
+other/*.zip
+other/*.mp4
+other/*/*
 
